@@ -20,6 +20,12 @@ namespace Sample.DependencyMonitor.Console
                                                 .Distinct()
                                                 .ToList();
 
+            List<string> referencedAssemblies = assembly.GetReferencedAssemblies().Select(x => x.Name).Distinct().ToList();
+            for (var i = 1; i <= referencedAssemblies.Count; i++)
+            {
+                System.Console.WriteLine("--{0}-Reference: {1}", i, referencedAssemblies[i - 1]);
+            }
+
             foreach (var item in classList)
             {
                 System.Console.WriteLine("      -> ClassName: {0}", item);
